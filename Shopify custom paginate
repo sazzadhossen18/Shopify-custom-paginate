@@ -1,0 +1,63 @@
+  .b-pagination-outer {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    overflow: hidden;
+    display: flex
+  }
+  #border-pagination {
+    margin: 0 auto;
+    padding: 0;
+    text-align: center
+  }
+  #border-pagination li {
+    display: inline;
+
+  }
+  #border-pagination li a {
+    display: block;
+    text-decoration: none;
+    color: #000;
+    padding: 5px 10px;
+    border: 1px solid #222;
+    float: left;
+
+  }
+  #border-pagination li a {
+    -webkit-transition: background-color 0.4s;
+    transition: background-color 0.4s
+  }
+  #border-pagination li a.active {
+    background-color: #222;
+    color: #fff;
+  }
+  #border-pagination li a:hover:not(.active) {
+    background: #222;
+    color:#fff;
+  }
+
+<div class="b-pagination-outer">
+  <ul id="border-pagination">
+    {%- if paginate.previous -%}
+      <li><a class="" href="{{ paginate.previous.url }}">«</a></li>
+    {%- endif -%}
+    {%- for part in paginate.parts -%}
+      <li>
+        {%- if part.is_link -%}
+          <a href="{{ part.url }}">{{ part.title }}</a>
+        {% else %}
+          {%- if part.title == paginate.current_page -%}
+            <li>
+              <a href="#" class="active">{{ part.title }}</a>
+            </li>
+          {%- endif -%}
+        {%- endif -%}
+      </li>
+    {%- endfor -%}
+    {%- if paginate.next -%}
+      <li><a href="{{ paginate.next.url }}">»</a></li>
+    {%- endif -%}
+  </ul>
+</div>
+
+
